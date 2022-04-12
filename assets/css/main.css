@@ -121,3 +121,34 @@ a {
     }
 }
     
+.flex{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+
+.flex-v{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+.bg-primary{
+    background: #F3EBF6; 
+    margin: 0 auto;   
+}
+.navbar{
+    width: 100%;
+    height: 80px;
+    background: #FFFFFF;
+    margin: 0 auto;
+}
+.next-btn{
+    border-radius: 6px;
+    align-self: flex-end;
+    margin-right: 56px;
+}
+
+.u-b-r{
+    border-radius: 6px;
+}

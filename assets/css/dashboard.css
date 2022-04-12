@@ -1,0 +1,13 @@
+
+input[type=text], input[type=email], input[type=phone], input[type=number], input[type=date]{
+    border-radius: 6px;
+}
+.title{
+    padding-top: 10px;
+    color: #0f0913;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 46px;
+}

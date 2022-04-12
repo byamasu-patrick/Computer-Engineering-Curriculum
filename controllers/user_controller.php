@@ -5,7 +5,7 @@ include_once('../models/user.php');
 if(isset($_POST['reg_num']) && isset($_POST['username']) && isset($_POST['password'])){
     $user_data = array(
         'username' => trim($_POST['username']),
-        'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+        'password' => md5($_POST['password']),
         'reg_num' => trim($_POST['reg_num'])
     );
     //var_dump($user_data);

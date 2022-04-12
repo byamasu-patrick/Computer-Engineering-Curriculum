@@ -5,11 +5,12 @@ include_once('../models/user.php');
 if(isset($_POST['reg_num']) && isset($_POST['password'])){
     $user_data = array(
         'reg_num' => trim($_POST['reg_num']),
-        'password' => password_hash($_POST['password'], PASSWORD_DEFAULT)
+        'password' => md5($_POST['password'])
     );
-    //var_dump($user_data);
+    var_dump($user_data);
     $user = new User();
-    $user_info = get_user($user_data);
+    $user_info = $user->get_user($user_data);
+    //var_dump($user_info);
     if($user_info != NULL){ 
         session_start();
         $_SESSION['username'] = $user_info['username'];
@@ -19,7 +20,7 @@ if(isset($_POST['reg_num']) && isset($_POST['password'])){
         header('Location: ../dashboard.php');
     }
     else{
-       header('Location: ../signup.php');
+       header('Location: ../index.php');
     }
     
 }
