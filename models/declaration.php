@@ -1,18 +1,23 @@
 <?php
+//INSERT INTO `declaration`( `declaration_state`, `value`, `student_id`) VALUES 
 
 include_once('../db/db_conn.php');
-class User extends Connection{
-    // pro $db;
+class Declaration extends Connection{
+    // private $db;
     public function __construct(){   
-       parent::__construct();
+       
+        parent::__construct();
         // var_dump($conn); 
     }
     /* Setting up user account */
     public function create($data){
         try {
-            $sql_stmt = "INSERT INTO user(reg_num, username, password, account_type) VALUES ('". $data['reg_num'] ."', '". $data['username'] ."', '". $data['password'] ."', '". $data['account_type'] ."')";
+
+            $sql_stmt = "INSERT INTO `declaration`(`value`, `student_id`) VALUES (".
+            "'". $data['value'] ."', '". $data['reg_num'] ."')";
             //var_dump(mysqli_query($this->db, $sql_stmt));
             if (!mysqli_query($this->db, $sql_stmt)) {
+                echo 'Could not insert into the database: '. mysqli_error($this->db);
                 echo "An error has occured while saving into the database";  
                 return FALSE;              
             }
@@ -23,14 +28,16 @@ class User extends Connection{
             return FALSE;
         }
     }
-    public function get_user($data){
+    public function get_address_by_reg_num($reg_num){
         try {
-            $sql_stmt = "SELECT * FROM user WHERE reg_num = '". $data['reg_num'] ."' AND password = '". $data['password'] ."'";
+            $sql_stmt = "SELECT * FROM `address_details` WHERE `reg_num` = '". $reg_num ."'";
 
             $user_info = mysqli_query($this->db, $sql_stmt);
+
             if ($user_info) {
-                $user_data = mysqli_fetch_assoc($user_info);
-                return $user_data;
+               $user_ = mysqli_fetch_assoc($user_info);
+                   
+                return $user_;
             }
             return NULL;
             

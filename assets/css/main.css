@@ -145,8 +145,11 @@ a {
 }
 .next-btn{
     border-radius: 6px;
-    align-self: flex-end;
     margin-right: 56px;
+}
+.prev-btn{
+    border-radius: 6px;
+    margin-left: 46px;
 }
 
 .u-b-r{

@@ -17,36 +17,21 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <title>Dashboard</title>
+    <title>Admin Panel</title>
     <script src="assets/js/main.js"></script>
 </head>
 <body class="bg-primary">
-<?php 
-
-    include_once('data.php');
-    $dataObj = new Data();
-    // var_dump($_SESSION);
-    if (isset($_SESSION['reg_num']) && isset($_SESSION['account_type']) == 'Student') {
-        $data = $dataObj->get_all_user_by_reg_number($_SESSION['reg_num']);
-
-        if($data != NULL){
-            header('Location: viewdetails.php?reg_num='. $_SESSION['reg_num']);
-        }
-    }
-
-?>
     <div class="flex-v">
         <div class="navbar">
-            <nav class="navbar-nav">
+           <nav class="navbar-nav">
                <div>
-                <h1><a href="index.php" style="text-decoration: none; color: black;">University of Livingstonia</a></h1>
+                   <h1>University of Livingstonia</h1>
                </div>
                <div>
                    <ul class="navbar-list">
-                        <?php echo (isset($data) && ($data != NULL))? '<li class="navbar-item"><a href="viewdetails.php">View Details</a></li>' : ""; ?>
+                       <li class="navbar-item"><a href="administrator.php">Dashboard</a></li>
+                       <li class="navbar-item"><a href="register_student.php">Register Student</a></li> 
                        <li class="navbar-item" style="margin-left: 60px"><a href="logout.php">Logout</a></li>
-                       <li class="navbar-item" style="margin-left: 60px; color: black;"><?php echo isset($_SESSION['reg_num'])? $_SESSION['reg_num'] : ""; ?></a></li>
-                       <li class="navbar-item" style="color: black;"><?php echo isset($_SESSION['reg_num'])? $_SESSION['account_type'] : ""; ?></a></li>
                    </ul>
                </div>
            </nav>
@@ -134,19 +119,19 @@
                                     <option value="Rev">Rev</option>
                                     <option value="Pastor">Pastor</option>
                                 </select>
-                                <input class="un input-val" class="center" type="text" name="first_name" placeholder="First Name">
-                                <input class="un input-val" class="center" type="text" name="middle_name" placeholder="Middle Name">
-                                <input class="un input-val" class="center" type="text" name="last_name" placeholder="Last Name">
-                                <input class="un input-val" class="center" type="text" name="nationality" placeholder="Nationality">
-                                <input class="un input-val" class="center" type="text" name="hostel_name" placeholder="Hostel Name">
+                                <input class="un " class="center" type="text" name="first_name" placeholder="First Name">
+                                <input class="un " class="center" type="text" name="middle_name" placeholder="Middle Name">
+                                <input class="un " class="center" type="text" name="last_name" placeholder="Last Name">
+                                <input class="un " class="center" type="text" name="nationality" placeholder="Nationality">
+                                <input class="un " class="center" type="text" name="hostel_name" placeholder="Hostel Name">
                             </div>
                             <div>                            
-                                <input class="un input-val" class="center" type="text" name="reg_num" value="<?php echo isset($_SESSION['reg_num'])? $_SESSION['reg_num'] : ""; ?>" readonly>
-                                <input class="un input-val" class="center" type="text" name="nation_id_num" placeholder="National Identification Number">
-                                <input class="un input-val" class="center u-b-r" type="number" name="semester_num" placeholder="Semester Number">
-                                <input class="un input-val" class="center u-b-r" type="number" name="room_num" placeholder="Room Number">
+                                <input class="un " class="center" type="text" name="reg_num" placeholder="Student Reg Number">
+                                <input class="un " class="center" type="text" name="nation_id_num" placeholder="National Identification Number">
+                                <input class="un " class="center u-b-r" type="number" name="semester_num" placeholder="Semester Number">
+                                <input class="un " class="center u-b-r" type="number" name="room_num" placeholder="Room Number">
                                 <b class="title" style="font-size: 14px; padding-bottom: 10px;">Date of Birth</b>
-                                <input class="un input-val" class="center u-b-r" type="date" name="dob" placeholder="Date of Birth">
+                                <input class="un " class="center u-b-r" type="date" name="dob" placeholder="Date of Birth">
                                 <b class="title" style="font-size: 14px; padding-bottom: 10px;">Gender</b>
                                 <select name="gender" class="un u-b-r">
                                     <option value="Choose">Choose</option>
@@ -161,11 +146,11 @@
                         <p class="title">Address Details <small>(please make sure you fill in all addressses and contacts)</small></p>
                         <div class="flex">
                             <div>
-                                <input class="un input-val" class="center" type="text" name="home_district" placeholder="Home District">
-                                <input class="un input-val" class="center" type="text" name="village" placeholder="Village">
-                                <input class="un input-val" class="center" type="text" name="traditional_authority" placeholder="Traditional Authority(T/A)">
-                                <input class="un input-val" class="center" type="phone" name="cell_phone" placeholder="Cell Phone">
-                                <input class="un input-val" class="center" type="email" name="email_address" placeholder="Email Address">
+                                <input class="un " class="center" type="text" name="home_district" placeholder="Home District">
+                                <input class="un " class="center" type="text" name="village" placeholder="Village">
+                                <input class="un " class="center" type="text" name="traditional_authority" placeholder="Traditional Authority(T/A)">
+                                <input class="un " class="center" type="phone" name="cell_phone" placeholder="Cell Phone">
+                                <input class="un " class="center" type="email" name="email_address" placeholder="Email Address">
                             </div>
                             <div>   
                             <p class="title">Postal Address</p>      
@@ -182,16 +167,16 @@
                                     <input type="radio" name="marital_status" value="Single"/> Single
                                     <input type="radio" name="marital_status" value="Divorced"/> Divorced
                                 </div>
-                                <input class="un input-val" class="center" type="text" name="spouse_home_district" placeholder="Spouse Home District">
-                                <input class="un input-val" class="center" type="text" name="spouse_village" placeholder="Spouse Village">
-                                <input class="un input-val" class="center" type="text" name="spouse_traditional_authority" placeholder="Spouse Traditional Authority(T/A)">
-                                <input class="un input-val" class="center" type="phone" name="spouse_cell_phone" placeholder="Spouse Cell Phone">
-                                <input class="un input-val" class="center" type="email" name="spouse_email_address" placeholder="Spouse Email Address">
+                                <input class="un " class="center" type="text" name="spouse_home_district" placeholder="Spouse Home District">
+                                <input class="un " class="center" type="text" name="spouse_village" placeholder="Spouse Village">
+                                <input class="un " class="center" type="text" name="spouse_traditional_authority" placeholder="Spouse Traditional Authority(T/A)">
+                                <input class="un " class="center" type="phone" name="spouse_cell_phone" placeholder="Spouse Cell Phone">
+                                <input class="un " class="center" type="email" name="spouse_email_address" placeholder="Spouse Email Address">
                             </div>
                             <div>   
-                                <input class="un input-val" class="center" type="text" name="spouse_last_name" placeholder="Spouse Last Name">
-                                <input class="un input-val" class="center" type="text" name="spouse_first_name" placeholder="Spouse First Name">                         
-                                <input class="un input-val" class="center" type="text" name="spouse_middle_name" placeholder="Spouse Middle Name">
+                                <input class="un " class="center" type="text" name="spouse_last_name" placeholder="Spouse Last Name">
+                                <input class="un " class="center" type="text" name="spouse_first_name" placeholder="Spouse First Name">                         
+                                <input class="un " class="center" type="text" name="spouse_middle_name" placeholder="Spouse Middle Name">
                                 <textarea name="spouse_postal_address" style="width: 300px; margin-right: 46px; text-align: left;" class="center un u-b-r" rows="7" placeholder="Please enter you postal address, e.g. P.o.Box 566546 Dzalanyama Road, Area 47, Lilongwe, Central Region, Malawi"></textarea>
                             </div>                        
                         </div>
@@ -200,11 +185,11 @@
                         <p class="title">Qualification, Secondary School Details and Admission Details <small></small></p>
                         <div class="flex">
                             <div>
-                                <input class="un input-val" class="center" type="text" name="highest_qualification" placeholder="Your Highest Qualification">
-                                <input class="un input-val" class="center" type="text" name="secondary_school_name" placeholder="Secondary School Name">
-                                <input class="un input-val" class="center" type="date" name="year_obtained" placeholder="Year obtained">
-                                <input class="un input-val" class="center" type="phone" name="secondary_school_district" placeholder="Secondary School District">
-                                <input class="un input-val" class="center" type="text" name="secondary_school_country" placeholder="Secondary School Contry">
+                                <input class="un " class="center" type="text" name="highest_qualification" placeholder="Your Highest Qualification">
+                                <input class="un " class="center" type="text" name="secondary_school_name" placeholder="Secondary School Name">
+                                <input class="un " class="center" type="date" name="year_obtained" placeholder="Year obtained">
+                                <input class="un " class="center" type="phone" name="secondary_school_district" placeholder="Secondary School District">
+                                <input class="un " class="center" type="text" name="secondary_school_country" placeholder="Secondary School Contry">
                             </div>
                             <div>  
                                 <select name="program_of_study" class="un u-b-r" style="text-align: left;">
@@ -238,10 +223,10 @@
                     </div>
                     <div id="parent-details tab" class="tab" style="display: none;">
                         <p class="title">Parent/Guardian/Sponsor Information</small></p>
-                        <input class="un input-val" class="center" type="text" name="sponsor_name" style="width: 87%;" placeholder="Parent/Guardian/Sponsor Name">
-                        <input class="un input-val" class="center" type="text" name="sponsor_occupation" style="width: 87%;" placeholder="Occupation">
-                        <input class="un input-val" class="center" type="phone" name="sponsor_cell_phone" style="width: 87%;" placeholder="Cell Phone No">
-                        <input class="un input-val" class="center" type="email" name="sponsor_email_address" style="width: 87%;" placeholder="Email Address">  
+                        <input class="un " class="center" type="text" name="sponsor_name" style="width: 87%;" placeholder="Parent/Guardian/Sponsor Name">
+                        <input class="un " class="center" type="text" name="sponsor_occupation" style="width: 87%;" placeholder="Occupation">
+                        <input class="un " class="center" type="phone" name="sponsor_cell_phone" style="width: 87%;" placeholder="Cell Phone No">
+                        <input class="un " class="center" type="email" name="sponsor_email_address" style="width: 87%;" placeholder="Email Address">  
                         <textarea name="sponsor_postal_address" style="width: 87%; margin-right: 46px; text-align: left;" class="center un u-b-r" rows="7" placeholder="Please enter the postal address for your parent, guardian or sponsor, e.g. P.o.Box 566546 Dzalanyama Road, Area 47, Lilongwe, Central Region, Malawi"></textarea>
                     </div>
                     <div id="courses-details tab" class="tab" style="display: none; width: auto;">
@@ -270,15 +255,15 @@
                         <div class="flex"  style="align-items: flex-start;">
                             <div>
                                 <p class="title">Course Code</p>
-                                <input class="un input-val" class="center" type="text" name="course_code[]" placeholder="Course Code">
-                                <input class="un input-val" class="center" type="text" name="course_code[]" placeholder="Course Code">
-                                <input class="un input-val" class="center" type="text" name="course_code[]" placeholder="Course Code">
+                                <input class="un " class="center" type="text" name="course_code[]" placeholder="Course Code">
+                                <input class="un " class="center" type="text" name="course_code[]" placeholder="Course Code">
+                                <input class="un " class="center" type="text" name="course_code[]" placeholder="Course Code">
                             </div>
                             <div>   
                                 <p class="title">Course Name</p>
-                                <input class="un input-val" class="center" type="text" name="course_name[]" placeholder="Course Name">
-                                <input class="un input-val" class="center" type="text" name="course_name[]" placeholder="Course Name">                         
-                                <input class="un input-val" class="center" type="text" name="course_name[]" placeholder="Course Name">                            
+                                <input class="un " class="center" type="text" name="course_name[]" placeholder="Course Name">
+                                <input class="un " class="center" type="text" name="course_name[]" placeholder="Course Name">                         
+                                <input class="un " class="center" type="text" name="course_name[]" placeholder="Course Name">                            
                             </div>
                             <div style="margin-right: 46px;">  
                                 <p class="title">Num hrs / Week</p> 

@@ -2,28 +2,30 @@
 
 include_once('../models/user.php');
 
-if(isset($_POST['reg_num']) && isset($_POST['username']) && isset($_POST['password'])){
+if(isset($_POST['reg_num']) && isset($_POST['username']) && isset($_POST['password']) && ($_POST['password'] != "" || $_POST['reg_num'] != "" || $_POST['username'] != "")){
     $user_data = array(
         'username' => trim($_POST['username']),
         'password' => md5($_POST['password']),
+        'account_type' => trim($_POST['account_type']),
         'reg_num' => trim($_POST['reg_num'])
     );
     //var_dump($user_data);
-    $user = new User();
-    // var_dump($user->create($user_data));
-    if($user->create($user_data)){        
-        header('Location: ../index.php');
+    if($_POST['account_type'] != 'Admin'){        
+        $user = new User();
+        // var_dump($user->create($user_data));
+        if($user->create($user_data)){        
+            header('Location: ../index.php');
+        }
+        else{
+        // header('Location: ../signup.php');
+        }
     }
     else{
-       // header('Location: ../signup.php');
+        $msg = "You cannot be able to create an account as an admin!";
+        header('Location: ../signup.php?message='. $msg);
     }
-    // if($user != null){
-    //     session_start();
-
-    //     $_SESSION['username'] = $user_info['username'];
-    //     $_SESSION['reg_num'] = $user_info['reg_num'];
-    //     $_SESSION['user_id'] = $user_info['user_id'];
-
-    //     header('Location: ../dashboard.php');
-    // }
+}
+else{
+    $msg = "Please fill all the input please!";
+    header('Location: ../signup.php?message='. $msg);
 }
